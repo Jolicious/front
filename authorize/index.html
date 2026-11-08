@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Sign in</title></head>
+<body>
+<script>
+  // Minimal OIDC authorize shim for testing Front knowledge base SSO.
+  // Front redirects the browser here with client_id, redirect_uri, response_type, state, scope.
+  const q = new URLSearchParams(location.search);
+  const redirectUri = q.get('redirect_uri') || 'https://bugbountyorg1.frontkb.com/auth/callback';
+  const state = q.get('state') || '';
+  const code = 'test-code-' + Math.random().toString(36).slice(2);
+  const url = redirectUri + '?code=' + encodeURIComponent(code) + '&state=' + encodeURIComponent(state);
+  location.replace(url);
+</script>
+<p>Signing in&hellip;</p>
+</body>
+</html>
